@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Debate Chat App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="user-profile">
+          <img src="https://via.placeholder.com/50" alt="User Profile Image" />
+          <div>
+            <h3>admin</h3>
+            <p>admin@debatechat.com</p>
+          </div>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="#">Edit</a></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </div>
+      <div class="main-content">
+        <div class="chat-header">
+          <h1>Debate Chat App</h1>
+          <p>Welcome to the debate chat app!</p>
+        </div>
+        <div class="todays-topic">
+          <h2>Today's Topic</h2>
+          <div class="topic-content">
+            <h3>Should the voting age be lowered to 16?</h3>
+            <p>
+             !!  It is better to debate a question without settling it than to settle a ques without debating it !!  
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <script>
+
+
+
+        // Get the Logout menu item
+  var logoutLink = document.querySelector('.sidebar-menu li:nth-child(2) a');
+  
+  // Add a click event listener to the Logout menu item
+  logoutLink.addEventListener('click', function(event) {
+    // Prevent the default behavior of the link
+    event.preventDefault();
+  
+    // Redirect the user to index.html
+    window.location.href = 'index.html';
+  
+    // Disable the back button
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  });
+  
+
+  // Get the Edit menu item
+var editLink = document.querySelector('.sidebar-menu li:nth-child(1) a');
+
+// Add a click event listener to the Edit menu item
+editLink.addEventListener('click', function(event) {
+  // Prevent the default behavior of the link
+  event.preventDefault();
+
+  // Prompt the user to enter a new topic
+  var newTopic = prompt("Enter a new topic:");
+
+  // Make an AJAX request to the backend API to update the topic
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/api/update-topic", true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      // Update the topic in the frontend
+      var topicTitle = document.querySelector('.todays-topic h3');
+      topicTitle.innerHTML = newTopic;
+    }
+  };
+  xhr.send(JSON.stringify({topic: newTopic}));
+});
+
+  
+  
+</script>
+
+
+
+
+  </body>
+</html>
