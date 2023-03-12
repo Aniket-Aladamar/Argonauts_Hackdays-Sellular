@@ -157,22 +157,6 @@ fetch('/api/messages')
       messagesList.appendChild(messageItem);
     });
   });
-
-
-
-
-
-  window.onload = function() {
-  // Get the debate topic element
-  var debateTopicElement = document.querySelector('.topic-content h3');
-
-  // Fetch the debate topic from the server
-  fetch('/api/debate-topic')
-    .then(response => response.text())
-    .then(debateTopic => {
-      // Update the debate topic on the page
-      debateTopicElement.textContent = debateTopic;
-    });
 };
 
     </script>
