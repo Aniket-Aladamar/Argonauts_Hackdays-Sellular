@@ -12,3 +12,4 @@ Debate Chat App
 - When they login, they can see the topic for the day on login and start chatting. Whereas when the admin logs in, he/she can set a new topic.
 - We have designed the front and backend of the app. 
 - https://aniket-aladamar.github.io/Argonauts_Hackdays-Sellular/
+- We have used the platforms Postman and mongoDB to achieve this task
